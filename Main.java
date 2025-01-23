@@ -10,6 +10,7 @@ public class Main {
             System.out.println("1. Add a student");
             System.out.println("2. Display info and average mark");
             System.out.println("3. Show students above an average");
+            System.out.println("4. Exit");
             int option = askInt(sc);
             sc.nextLine();
             switch (option) {
@@ -34,10 +35,15 @@ public class Main {
                     System.out.println("Select the name of the person you want to see the data:");
 
                     name = sc.nextLine();
-                    System.out.println("Here is the information: ");
-                    System.out.println("Name: " + name);
-                    System.out.println("Grades: " + grades.get(name).toString());
-                    System.out.println("Average: " + String.format("%.2f", averages.get(name)));
+                    try{
+                        System.out.println("Here is the information: ");
+                        System.out.println("Name: " + name);
+
+                        System.out.println("Grades: " + grades.get(name).toString());
+                        System.out.println("Average: " + String.format("%.2f", averages.get(name)));
+                    }catch (NullPointerException e){
+                        System.out.println("The student is not on the system");
+                    }
                     break;
 
                 case 3:
@@ -50,6 +56,7 @@ public class Main {
                         }
                     }
                     break;
+
                 case 4:
                     return;
 
