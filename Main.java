@@ -9,17 +9,17 @@ public class Main {
         HashMap<String, List<Double>> grades = new HashMap<String, List<Double>>();
         HashMap<String, Double> averages = new HashMap<String, Double>();
         do {
-            System.out.println("select an option");
+            System.out.println("\n\n\nSelect an option");
             System.out.println("1. Add a student");
             System.out.println("2. Display info and average mark");
-            System.out.println("3. Get top student");
+            System.out.println("3. Show students above an average");
             int option = sc.nextInt();
             sc.nextLine();
             switch (option) {
                 case 1:
                     System.out.println("Introduce the name of the student: ");
                     String name = sc.nextLine();
-                    System.out.println("Enter the ammount of grades you wnt to introduce: ");
+                    System.out.println("Enter the ammount of grades you want to introduce: ");
                     int ammount = sc.nextInt();
                     List<Double> list = new ArrayList<Double>();
                     double average = 0;
@@ -44,6 +44,14 @@ public class Main {
                     break;
 
                 case 3:
+                    System.out.println("Select the minimun average you want to see: ");
+                    double minAverage = sc.nextDouble();
+                    System.out.println("Here are the students above that average: ");
+                    for(String student: averages.keySet()){
+                        if(averages.get(student) >= minAverage){
+                            System.out.println("- " + student + " Average: " + averages.get(student));
+                        }
+                    }
                     break;
                 case 4:
                     return;
