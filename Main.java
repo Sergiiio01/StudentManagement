@@ -17,6 +17,10 @@ public class Main {
                 case 1:
                     System.out.println("Introduce the name of the student: ");
                     String name = sc.nextLine();
+                    if(grades.containsKey(name)){
+                        System.out.println("The student is already registered");
+                        break;
+                    }
                     System.out.println("Enter the ammount of grades you want to introduce: ");
                     int ammount = askInt(sc);
                     List<Double> list = new ArrayList<Double>();
