@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,19 +10,19 @@ public class Main {
             System.out.println("1. Add a student");
             System.out.println("2. Display info and average mark");
             System.out.println("3. Show students above an average");
-            int option = sc.nextInt();
+            int option = askInt(sc);
             sc.nextLine();
             switch (option) {
                 case 1:
                     System.out.println("Introduce the name of the student: ");
                     String name = sc.nextLine();
                     System.out.println("Enter the ammount of grades you want to introduce: ");
-                    int ammount = sc.nextInt();
+                    int ammount = askInt(sc);
                     List<Double> list = new ArrayList<Double>();
                     double average = 0;
                     for(int i=0; i< ammount; i++){
                         System.out.println("Enter a grade: ");
-                        double grade = sc.nextDouble();
+                        double grade = askDouble(sc);
                         list.add(grade);
                         average += grade;
                     }
@@ -40,7 +37,7 @@ public class Main {
                     System.out.println("Here is the information: ");
                     System.out.println("Name: " + name);
                     System.out.println("Grades: " + grades.get(name).toString());
-                    System.out.println("Average: " + averages.get(name));
+                    System.out.println("Average: " + String.format("%.2f", averages.get(name)));
                     break;
 
                 case 3:
@@ -49,7 +46,7 @@ public class Main {
                     System.out.println("Here are the students above that average: ");
                     for(String student: averages.keySet()){
                         if(averages.get(student) >= minAverage){
-                            System.out.println("- " + student + " Average: " + averages.get(student));
+                            System.out.println("- " + student + " Average: " + String.format("%.2f", averages.get(student)));
                         }
                     }
                     break;
@@ -59,5 +56,31 @@ public class Main {
             }
 
         } while (true);
+    }
+
+    public static double askDouble(Scanner sc){
+
+        do {
+            try {
+
+                return sc.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Please, introduce a number");
+                sc.next();
+            }
+        }while(true);
+    }
+
+    public static int askInt(Scanner sc){
+
+        do {
+            try {
+
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Please, introduce a number");
+                sc.next();
+            }
+        }while(true);
     }
 }
